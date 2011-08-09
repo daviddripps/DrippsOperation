@@ -1,0 +1,65 @@
+DrippsOperation
+===============
+
+A quick and easy way to manage CoreData on background threads in
+iOS 4.0 and higher.
+
+
+Requirements
+------------
+
+- iOS 4.0 - NSOperation (which this extends) was introduced in iOS 4.0
+- Core Data Framework
+
+
+How to Use
+----------
+
+Subclass DrippsOperation and add a "- (void)main" function to your
+implementation.  The operation's NSManagedObjectContext is stored in
+an instance variable named "nsmoc".  This should be the only context
+used throughout all the code being executed in the operation.  When
+you're finished just call [self saveChanges]; to save the context and
+you're done.
+
+You can add DrippsOperation subclasses to any NSOperationQueue, but I
+have also provided DrippsQueueManager to help manage multiple queues.
+I often find myself with the need for synchronous and asynchronous
+queues in the same project.  While I could take the time to set up
+dependencies to achieve the same thing, many times my operations are
+completely unrelated and it's much quicker to create a queue with a
+max concurrency of 1 for the synchronous queues and completely separate
+queues for asynchronous operation queues.
+
+Please feel free to fork this project or suggest enhancements by
+emailing me at the address below.
+
+
+Legal Stuff
+-----------
+
+Copyright (C) 2011 David Dripps
+
+This code is licensed under the GNU General Public License (see below)
+so you are free to use and modify it any way you wish.  However, all
+existing comments and copyright information contained within must stay
+intact and unmodified.
+
+This program is free software: you can redistribute it and/or modify
+it under the terms of the GNU General Public License as published by
+the Free Software Foundation, either version 3 of the License, or
+(at your option) any later version.
+
+This program is distributed in the hope that it will be useful,
+but WITHOUT ANY WARRANTY; without even the implied warranty of
+MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+GNU General Public License for more details.
+
+You should have received a copy of the GNU General Public License
+along with this program.  If not, see <http://www.gnu.org/licenses/>.
+
+
+Contact
+-------
+
+david [dot] dripps [at] gmail [dot] com
